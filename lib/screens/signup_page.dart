@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:nutrition_tracker/screens/signup_page.dart';
+import 'package:nutrition_tracker/screens/login_page.dart';
 import '../widgets/custom_input_field.dart';
 import '../colors.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class SignupPage extends StatelessWidget {
+  const SignupPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,19 +29,9 @@ class LoginPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  width: 100,
-                  height: 100,
-                  padding: EdgeInsets.all(25),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: AppColors.secondary,
-                  ),
-                  child: Image.asset('assets/cutlery.png'),
-                ),
-                Container(
                   margin: EdgeInsets.symmetric(vertical: 10),
                   child: Text(
-                    "Welcome Back!",
+                    "Create Account",
                     style: TextStyle(
                       fontFamily: 'VendSans',
                       fontWeight: FontWeight.w700,
@@ -52,7 +42,7 @@ class LoginPage extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 4),
                   child: Text(
-                    "Log in to your account",
+                    "Let's get you started!",
                     style: TextStyle(
                       fontFamily: 'VendSans',
                       fontWeight: FontWeight.w300,
@@ -78,11 +68,33 @@ class LoginPage extends StatelessWidget {
                       ),
                       SizedBox(height: 20),
                       CustomInputField(
+                        hintText: 'Email',
+                        prefixIcon: Icons.email_outlined,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter email id';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(height: 20),
+                      CustomInputField(
                         hintText: 'Password',
                         prefixIcon: Icons.lock_outlined,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter password';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(height: 20),
+                      CustomInputField(
+                        hintText: 'Confirm Password',
+                        prefixIcon: Icons.lock_outlined,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please re-enter password';
                           }
                           return null;
                         },
@@ -103,7 +115,7 @@ class LoginPage extends StatelessWidget {
                             ),
                           ),
                           child: Text(
-                            "Log In",
+                            "Sign Up",
                             style: TextStyle(
                               fontSize: 18, // text size
                               fontWeight: FontWeight.w500, // optional
@@ -118,7 +130,7 @@ class LoginPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      "Don't have an account?",
+                      "Already have an account?",
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w300,
@@ -129,9 +141,7 @@ class LoginPage extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => const SignupPage(),
-                          ),
+                          MaterialPageRoute(builder: (context) => LoginPage()),
                         );
                       },
                       style: TextButton.styleFrom(
@@ -139,7 +149,7 @@ class LoginPage extends StatelessWidget {
                         foregroundColor: AppColors.buttonColor,
                       ),
                       child: Text(
-                        "Sign up",
+                        "Sign in",
                         style: TextStyle(fontWeight: FontWeight.w700),
                       ),
                     ),
